@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TodoList</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+    <div id="app" class="content">
+        <div class="top">
+            <div class="topinfo">
+                <h1 class="title">TodoList
+            </div>
+            <h4 class="today">今天是：{{time}}
+        </div>
+        <div class="progress">
+            <h3>目前進度</h3>
+            <div class="progressbar">
+                <div class="valuebar"></div>
+            </div>
+        </div>
+        <div class="addtask">
+            <input type="text" placeholder="請輸入待辦事項">
+            <button>新增項目</button>
+        </div>
+        <div class="contain">
+            <ul class="navbar">
+                <li id="all">全部</li>
+                <li id="ing">進行中</li>
+                <li id="done">已完成</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var time = new Date()
+        var day_list = ['日', '一', '二', '三', '四', '五', '六'];
+        var today = `${time.getFullYear()}.${time.getMonth() + 1}.${time.getDate()}(${day_list[time.getDay()]})`
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                content: 'Hello!world!',
+                time: today
+            },
+        })
+    </script>
+</body>
+
+</html>
