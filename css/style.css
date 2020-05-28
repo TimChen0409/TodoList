@@ -26,6 +26,40 @@ body {
   overflow-x: hidden;
 }
 
+.addtask {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.addtask .keyin {
+  padding: 0 10px;
+  letter-spacing: 1px;
+  width: 100%;
+  border: none;
+  background: none;
+  height: 35px;
+  font-weight: bold;
+}
+
+.addtask .addbtn {
+  width: 60px;
+  height: 35px;
+  font-size: 14px;
+  border: none;
+  font-weight: bold;
+}
+
+.addtask .addbtn:hover {
+  background: #8ddad5;
+}
+
 .content {
   position: relative;
   background: #fff;
@@ -63,6 +97,7 @@ body {
   padding: 10px;
   cursor: pointer;
   width: 100px;
+  font-weight: bold;
 }
 
 .task {
@@ -85,10 +120,25 @@ body {
       -ms-flex-align: center;
           align-items: center;
   border-bottom: dashed 1px yellowgreen;
+  position: relative;
 }
 
-.close {
+.task ul li .close {
+  position: absolute;
   display: inline-block;
   cursor: pointer;
+  right: 25px;
+}
+
+.task ul li .close:hover {
+  background: #c76161;
+}
+
+.clear span {
+  cursor: pointer;
+  padding: 5px 10px;
+  font-size: 10px;
+  color: white;
+  background: #16982b;
 }
 /*# sourceMappingURL=style.css.map */
