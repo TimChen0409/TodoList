@@ -26,6 +26,42 @@ body {
   overflow-x: hidden;
 }
 
+.progress {
+  padding: 20px 0;
+  text-align: center;
+  letter-spacing: 2px;
+}
+
+.progress h3 {
+  font-size: 16px;
+  color: black;
+}
+
+.progress .progressbar {
+  margin: 5px 0;
+  height: 20px;
+  width: 100%;
+  background: gray;
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+}
+
+.progress .progressbar .percent {
+  position: absolute;
+  z-index: 99;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+
+.progress .progressbar .valuebar {
+  height: 20px;
+  position: absolute;
+  left: 0;
+  width: 50%;
+  background: #00cdac;
+}
+
 .addtask {
   display: -webkit-box;
   display: -ms-flexbox;
