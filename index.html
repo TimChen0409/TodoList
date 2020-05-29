@@ -5,62 +5,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TodoList</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.0/animate.min.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body>
     <div id="app" class="content">
         <div class="top">
-            <div class="topinfo">
-                <h1 class="title">TodoList
-            </div>
-            <h4 class="today">今天是：{{time}}
+            <h1 class="title animate__animated animate__jello">TodoList</h1>
+            <h4 class="today">現在時間：{{time}} 
+                <span class="clock">{{date}}</span>
+            </h4>
         </div>
         <div class="progress">
             <h3>目前進度</h3>
             <div class="progressbar">
-                <span class="percent">0%</span>
-                <div class="valuebar"></div>
+                <span class="percent">{{progressrate}} %</span>
+                <div class="valuebar" :style="{width: progressrate+'%'}"></div>
             </div>
         </div>
         <div class="addtask">
-            <input type="text" class="keyin" placeholder="請輸入待辦事項">
-            <button class="addbtn">新增</button>
+            <input type="text" class="keyin" placeholder="有什麼待辦事項嗎?" v-model="newtask">
+            <button class="addbtn" @click="addTask">新增</button>
         </div>
         <div class="contain">
             <ul class="navbar">
-                <li id="all">全部</li>
-                <li id="ing">進行中</li>
-                <li id="done">已完成</li>
+                <li id="all" :class="{'active':visi=='all'}" @click="visi='all'">全部 【{{tasks.length}}】</li>
+                <li id="ing" :class="{'active':visi=='ing'}" @click="visi='ing'">進行中【{{getInprogressTask}}】</li>
+                <li id="done" :class="{'active':visi=='done'}" @click="visi='done'">已完成【{{getDoneTask}}】</li>
             </ul>
-            <div class="task">
+            <div class="tasklist">
                 <ul>
-                    <li>
-                        <input type="checkbox" name="" id="">
-                        <span>Task1</span>
-                        <div class="close">X</div>
+                    <li v-for="task in filter">
+                        <input type="checkbox" :id="task.id" v-model="task.finished">
+                        <label :for="task.id" class="date">{{task.date}}</label>
+                        <span>{{task.name}}</span>
+                        <div class="close" @click="removeTask(task)">X</div>
                     </li>
                 </ul>
             </div>
         </div>
         <div class="clear">
-            <span>清除所有任務</span>
+            <span @click="clearAll">清除所有事項</span>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script>
-        var time = new Date()
-        var day_list = ['日', '一', '二', '三', '四', '五', '六'];
-        var today = `${time.getFullYear()}.${time.getMonth() + 1}.${time.getDate()}(${day_list[time.getDay()]})`
-        var vm = new Vue({
-            el: '#app',
-            data: {
-                content: 'Hello!world!',
-                time: today
-            },
-        })
-    </script>
+    <script src="js/app.js"></script>
+
 </body>
 
 </html>
