@@ -1,8 +1,7 @@
 var datenow = new Date()
 var day_list = ['日', '一', '二', '三', '四', '五', '六'];
-var clock = `${datenow.getHours()}:${datenow.getMinutes()}:${datenow.getSeconds()}`
 var today = `${datenow.getFullYear()}.${datenow.getMonth() + 1}.${datenow.getDate()}(${day_list[datenow.getDay()]})`
-
+var clock = `${datenow.getHours()}:${datenow.getMinutes()}:${datenow.getSeconds()}`
 
 var vm = new Vue({
 
@@ -16,9 +15,8 @@ var vm = new Vue({
             date: today,
             finished: false
         }],
-        visi: 'all',
+        type: 'all',
         date: clock
-
     },
     mounted() {
         var _this = this; //聲明一個變量指向 Vue 實例 this, 保證作用域一致, _this代表最初的對象
@@ -27,6 +25,7 @@ var vm = new Vue({
             var hh = today.getHours();
             var mm = today.getMinutes();
             var ss = today.getSeconds();
+            hh = checkTime(hh);
             mm = checkTime(mm);
             ss = checkTime(ss);
             _this.date = hh + ':' + mm + ':' + ss;
@@ -67,22 +66,19 @@ var vm = new Vue({
     computed: {
         filter: function () {
             var filterTasks = [];
-            switch (this.visi) { //要判斷的東西
+            switch (this.type) { //要判斷的事項類型
                 case 'ing': //條件
                     filterTasks = this.tasks.filter(function (item) {
                         return item.finished == false
                     })
                     return filterTasks
-                    break;
                 case 'done':
                     filterTasks = this.tasks.filter(function (item) {
                         return item.finished == true
                     })
                     return filterTasks
-                    break;
                 case 'all':
                     return this.tasks;
-                    break;
             }
         },
         getDoneTask: function () {//取得完成事項數字

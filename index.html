@@ -30,9 +30,9 @@
         </div>
         <div class="contain">
             <ul class="navbar">
-                <li id="all" :class="{'active':visi=='all'}" @click="visi='all'">全部 【{{tasks.length}}】</li>
-                <li id="ing" :class="{'active':visi=='ing'}" @click="visi='ing'">進行中【{{getInprogressTask}}】</li>
-                <li id="done" :class="{'active':visi=='done'}" @click="visi='done'">已完成【{{getDoneTask}}】</li>
+                <li id="all" :class="{'active':type=='all'}" @click="type='all'">全部 【{{tasks.length}}】</li>
+                <li id="ing" :class="{'active':type=='ing'}" @click="type='ing'">進行中【{{getInprogressTask}}】</li>
+                <li id="done" :class="{'active':type=='done'}" @click="type='done'">已完成【{{getDoneTask}}】</li>
             </ul>
             <div class="tasklist">
                 <ul>
