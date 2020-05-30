@@ -12,7 +12,7 @@ var vm = new Vue({
         tasks: [{
             id: 1,
             name: '買麥當勞薯條+肯德基蛋塔',
-            date: today,
+            date: datenow.toLocaleString(),
             finished: false
         }],
         type: 'all',
@@ -35,12 +35,13 @@ var vm = new Vue({
     methods: {
         addTask: function () { //新增一筆待辦事項
             var value = this.newtask.trim();
-            var id = Math.floor(Date.now());
+            var addtime = new Date();
+            var id = Math.floor(addtime);
             if (!value) return
             this.tasks.push({
                 id: id,
                 name: value,
-                date: today,
+                date: addtime.toLocaleString(),
                 finished: false
             })
             this.newtask = ''
